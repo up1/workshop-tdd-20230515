@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "fee067bd-3166-4cf9-8f88-02808512db88",
+		"_postman_id": "eaedb603-d990-4aa4-acfe-b5e57b3785ef",
 		"name": "TDD",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1453931",
-		"_collection_link": "https://red-firefly-245852.postman.co/workspace/day2~ec0d6ed6-713c-474c-888d-74f09fc94cba/collection/1453931-fee067bd-3166-4cf9-8f88-02808512db88?action=share&creator=1453931&source=collection_link"
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/day2~ec0d6ed6-713c-474c-888d-74f09fc94cba/collection/1453931-eaedb603-d990-4aa4-acfe-b5e57b3785ef?action=share&creator=1453931&source=collection_link"
 	},
 	"item": [
 		{
@@ -62,6 +62,50 @@
 					"port": "8080",
 					"path": [
 						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users = 10 users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than a second\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Size of users = 10\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(10).to.eql(jsonData.length);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
 					]
 				}
 			},
